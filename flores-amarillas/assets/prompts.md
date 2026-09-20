@@ -1,11 +1,19 @@
-# Ilustraciones originales
+# Prompts de las ilustraciones
 
-Método: herramienta integrada ImageGen; ambas imágenes generadas desde texto.
+Estas ilustraciones siguen una identidad distinta a la página anterior: tarde dorada, crema, amarillo, miel y rosa suave. El verde queda como apoyo natural de hojas y tallos.
 
 ## jardin.png
 
-Use case: illustration-story. Asset type: panoramic hero illustration for a romantic September yellow-flowers website. Create a stunning hand-painted Studio Ghibli-inspired enchanted flower garden at soft golden sunset, painterly watercolor and gouache textures, richly detailed botanical illustration. Large beautiful golden sunflowers, yellow lilies with six curved petals, tiny dusty pink cosmos flowers, delicate sage foliage. Winding stone path leading to a small garden gate, warm lanterns hanging in trees, distant hazy green hills, a tiny cream sleeping kitten partially tucked beside a terracotta pot at lower right, floating golden fireflies. Composition: wide landscape 3:2 image, flowers frame both edges and bottom, open softly glowing sky and distant garden in upper central third. Warm creamy ivory, muted olive sage, ochre and golden yellows, peach dusk sky. Magical, intimate, calm, handmade, sophisticated storybook painting. No text, no lettering, no watermarks, no UI, no border.
+Ilustración panorámica 16:9 para portada de una web romántica del 21 de septiembre. Jardín abundante durante golden hour, predominio de girasoles, lirios amarillos, pequeñas margaritas amarillas y cosmos rosa polvo. Luz cálida atravesando las hojas, sendero de piedra, arco cubierto de flores, paisaje al fondo y atmósfera de acuarela/gouache pintada a mano. Dos gatos machos discretos al lado derecho: uno blanco/crema y otro naranja con blanco. No deben ser protagonistas. Dejar una zona visualmente tranquila en el lado izquierdo/central para colocar texto. Paleta crema, amarillo mantequilla, miel, rosa suave y durazno; muy poco verde dominante. Sin texto ni UI.
+
+## jardin-camino.png
+
+Segunda escena panorámica 16:9 del mismo universo, pero distinta a la portada: sendero más cercano, banca o rincón de jardín, faroles y abundantes flores amarillas. Girasoles, lirios y pequeñas flores rosadas. Dos gatos machos descansando juntos cerca de la banca, uno blanco/crema y otro naranja con blanco. Luz cálida de tarde, estética pictórica de cuento animado, acuarela/gouache, colores crema, dorado y rosa. Sin texto ni UI.
 
 ## ramo.png
 
-Use case: illustration-story. Asset type: portrait bouquet illustration for a romantic yellow flower gift website. A lovingly arranged generous bouquet of large golden sunflowers, elegant pale yellow lilies, little dusty pink cosmos and delicate sage eucalyptus foliage, wrapped in beautifully folded ivory botanical-patterned paper with scalloped blush pink tissue and tied with a sophisticated long dusty rose silk ribbon. Hand-painted Studio Ghibli-inspired watercolor gouache botanical storybook illustration, warm cozy magical soft sunset light, richly detailed flowers with natural petal shapes. Centered full bouquet, all wrapping and ribbon visible, plain warm cream #faf7ee background with soft paper grain and faint warm shadow. Portrait 2:3 composition. No vase, no person, no hands, no text, no watermark, no border.
+Ilustración vertical 2:3 de un ramo elegante con girasoles grandes, lirios amarillo pálido, florecitas rosadas, flores pequeñas crema y follaje discreto. Papel marfil con patrón botánico sutil, papel interior rosa suave y lazo largo rosa polvo. Fondo crema con manchas de acuarela amarillo mantequilla y rosa. Luz golden hour. Ramo completo, sin manos, sin jarrón, sin texto.
+
+## jardin-final.png
+
+Escena panorámica 16:9 al final de la tarde, todavía luminosa. Camino entre girasoles, lirios y flores pequeñas, cielo durazno/crema y pétalos flotando. Dos gatos machos sentados juntos de espaldas mirando el paisaje: uno blanco/crema y uno naranja con blanco. Predominio de amarillo, crema y rosa; verde solo natural. Dejar espacio en el centro/izquierda para texto. Sin texto ni UI.

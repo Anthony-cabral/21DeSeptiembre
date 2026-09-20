@@ -1,30 +1,37 @@
-# Un jardín para ti
+# 21 de septiembre · Un jardín para ti
 
-Página romántica independiente para el Día de las Flores Amarillas. Todos sus archivos están en esta carpeta: no depende de la página anterior, sus datos ni su servidor.
+Versión mejorada de la página de flores amarillas. La identidad visual fue separada de la página romántica anterior: aquí predominan la luz de tarde, crema, amarillo, dorado y rosa suave.
 
-## Abrir
-
-Haz doble clic en `index.html`. Funciona directamente, sin instalar paquetes y sin conexión a Internet.
-
-También puedes usar una vista previa local con Node.js:
+## Ejecutar
 
 ```powershell
-cd C:\dev\ParaMiAmorcito\flores-amarillas
+cd flores-amarillas
 npm start
 ```
 
-Abre http://localhost:4174. Para probar las fechas: `npm test`.
+Abre:
 
-## Contenido
+```text
+http://localhost:4174
+```
 
-- `index.html`: portada, jardín con tres mensajes, ramo, cuenta regresiva, carta desplegable y cierre.
-- `styles.css`: diseño responsive y animaciones con soporte para movimiento reducido.
-- `app.js`: mensajes de flores, partículas, control de animación y actualización del contador.
-- `countdown.js`: cálculo de la próxima fecha en la zona horaria local del dispositivo. El 28 de septiembre muestra ceros y el mensaje de llegada durante todo el día; a partir del 29 apunta al año siguiente.
-- `assets/`: ilustraciones originales generadas para esta página y favicon.
+## Pruebas
 
-Los textos se editan en `index.html`; los mensajes interactivos están en los atributos `data-message`. Las ilustraciones son decorativas y el ramo real puede ser diferente. No hay servicios externos, formularios ni recopilación de datos. Para compartir la página puedes alojar esta carpeta en cualquier hosting estático; el servidor incluido es solo para vista previa local.
+```powershell
+npm test
+```
 
-## Ilustraciones
+## Archivos principales
 
-Generadas con la herramienta integrada ImageGen. Los prompts completos se guardan en `assets/prompts.md`.
+- `index.html`: estructura completa, textos, carta y secciones.
+- `styles.css`: diseño responsive, colores, animaciones y layouts.
+- `app.js`: flores interactivas, partículas, reveal, control de animaciones y contador.
+- `countdown.js`: lógica de la cuenta regresiva al 28 de septiembre.
+- `server.js`: servidor local/Render sin dependencias externas.
+- `assets/jardin.png`: portada.
+- `assets/jardin-camino.png`: jardín interactivo y agradecimientos.
+- `assets/ramo.png`: ramo principal.
+- `assets/jardin-final.png`: cierre.
+- `assets/prompts.md`: prompts de las ilustraciones.
+
+No usa frameworks ni dependencias externas.
