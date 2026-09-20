@@ -2,236 +2,182 @@
 <html lang="es">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#fff9ed">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#120805">
   <meta name="robots" content="noindex,nofollow">
-  <meta name="description" content="Un jardín de flores amarillas hecho con mucho cariño para el 21 de septiembre.">
-  <title>21 de septiembre · Un jardín para ti</title>
+  <meta name="description" content="Un viaje de flores amarillas, recuerdos y un ramito hecho para ti.">
+  <title>21 de septiembre · Un viaje para ti</title>
   <link rel="icon" href="assets/flor.svg" type="image/svg+xml">
-  <link rel="preload" as="image" href="assets/jardin.png">
+  <link rel="preload" as="image" href="assets/jardin-llegada.webp">
   <link rel="stylesheet" href="styles.css">
-  <script defer src="countdown.js"></script>
-  <script defer src="app.js"></script>
 </head>
-<body>
-  <a class="skip-link" href="#contenido">Saltar al contenido</a>
+<body class="locked">
+  <a class="skip-link" href="#jardin">Saltar al jardín</a>
 
-  <header class="site-header" id="site-header">
-    <a class="brand" href="#inicio" aria-label="Volver al inicio">
-      <img src="assets/flor.svg" alt="" width="34" height="34">
-      <span>21 de septiembre<small>UN JARDÍN PARA TI</small></span>
-    </a>
+  <section id="experience" class="experience" aria-label="Introducción interactiva">
+    <canvas id="threeCanvas" aria-hidden="true"></canvas>
+    <div class="experience-vignette" aria-hidden="true"></div>
+    <div id="flash" class="flash" aria-hidden="true"></div>
 
-    <nav aria-label="Recorrido">
-      <a href="#jardin">Jardín</a>
-      <a href="#ramo">Ramito</a>
-      <a href="#carta">Carta</a>
-    </nav>
+    <div id="startPanel" class="start-panel">
+      <div class="start-flower" aria-hidden="true">
+        <span class="petal p1"></span><span class="petal p2"></span><span class="petal p3"></span><span class="petal p4"></span>
+        <span class="petal p5"></span><span class="petal p6"></span><span class="petal p7"></span><span class="petal p8"></span>
+        <span class="flower-center"></span>
+      </div>
+      <p class="start-kicker">21 · 09</p>
+      <button id="startJourney" class="start-button" type="button">EMPEZAR VIAJE</button>
+      <p class="start-note">Toca la flor y deja que empiece la magia ♡</p>
+    </div>
 
-    <button class="motion-toggle" type="button" aria-pressed="false" aria-label="Pausar animaciones" title="Pausar animaciones">
-      <span aria-hidden="true">✦</span>
-      <span class="motion-label">Pausar magia</span>
-    </button>
+    <div id="journeyHud" class="journey-hud" aria-live="polite" hidden>
+      <p id="journeyTitle">Un pequeño viaje para ti...</p>
+      <span id="journeySub">mira alrededor ✦</span>
+    </div>
+
+    <button id="skipJourney" class="skip-journey" type="button" hidden>Saltar viaje ↓</button>
+  </section>
+
+  <audio id="bgMusic" preload="auto" loop>
+    <source src="assets/audio/flores-amarillas.mp3" type="audio/mpeg">
+    <source src="assets/audio/jardin-dorado.mp3" type="audio/mpeg">
+  </audio>
+
+  <header id="siteHeader" class="site-header" hidden>
+    <a class="brand" href="#jardin"><img src="assets/flor.svg" width="30" height="30" alt=""><span>21 de septiembre<small>HECHO PARA TI</small></span></a>
+    <nav aria-label="Secciones"><a href="#momentos">Momentos</a><a href="#ramo">Ramito</a><a href="#carta">Carta</a></nav>
+    <button id="soundToggle" class="icon-button" type="button" aria-pressed="false" aria-label="Pausar música">♫</button>
   </header>
 
-  <main id="contenido">
-    <section id="inicio" class="hero" aria-labelledby="hero-title">
-      <div class="hero-image" aria-hidden="true">
-        <img src="assets/jardin.png" alt="" width="1672" height="941" fetchpriority="high">
-        <div class="hero-glow"></div>
-        <div class="particles hero-particles"></div>
+  <main id="mainContent" hidden>
+    <section id="jardin" class="arrival hero-arrival" aria-labelledby="arrivalTitle">
+      <img class="arrival-bg" src="assets/jardin-llegada.webp" alt="Jardín de girasoles y flores rosadas iluminado por una luz dorada." width="941" height="1672" fetchpriority="high">
+      <div class="arrival-overlay"></div>
+      <div class="arrival-copy reveal">
+        <p class="eyebrow">LLEGASTE ♡</p>
+        <h1 id="arrivalTitle">Este jardín<br>era para ti.</h1>
+        <p>Quería que llegaras aquí después de atravesar recuerdos, flores y un poquito de caos bonito jajajja.</p>
+        <p class="handwritten">Porque sí mi amor, pensé en ti. Y mucho.</p>
+        <a class="button light" href="#momentos">Seguir explorando ↓</a>
       </div>
-
-      <div class="hero-paper">
-        <span class="pressed-flower" aria-hidden="true">✿</span>
-        <span class="paper-tape" aria-hidden="true"></span>
-        <p class="eyebrow">21 DE SEPTIEMBRE · UN JARDÍN HECHO PARA TI</p>
-        <h1 id="hero-title">Hoy las flores<br>tenían que ser<br><em>para ti.</em></h1>
-        <p class="hero-whisper">aunque primero tuvieran que llegar de esta manera.</p>
-        <p class="intro">Sé que hoy no pude llegar con un ramito en las manos, pero obviamente no iba a dejar pasar el día como si nada. Así que mientras llega el momento de dártelas como quiero, hice este pequeño jardín para ti.</p>
-        <p class="small-copy">Porque sí mi amor, pensé en ti. Y mucho.</p>
-        <a class="button primary" href="#jardin">Entrar a tu jardín <span aria-hidden="true">→</span></a>
-        <p class="handwritten hero-note">Hay demasiadas flores amarillas por aquí jajajja ♡</p>
-      </div>
-
-      <a class="scroll-cue" href="#jardin" aria-label="Bajar al jardín"><span>01</span><i aria-hidden="true">↓</i></a>
     </section>
 
-    <section id="jardin" class="garden section-space" aria-labelledby="garden-title">
+    <section id="momentos" class="moments section-space" aria-labelledby="momentsTitle">
       <div class="section-heading reveal">
-        <p class="eyebrow">01 / UN JARDÍN QUE ME RECUERDA A TI</p>
-        <h2 id="garden-title">Si pudiera convertir<br>un pensamiento bonito<br><em>en un lugar...</em></h2>
-        <p class="section-subtitle">probablemente se vería un poquito así.</p>
-        <p>Lleno de flores, tranquilo, bonito y con muchas cositas que me recuerdan a ti. Porque tú tienes esa manera de hacer que hasta un día normal se sienta diferente sin tener que hacer demasiado.</p>
+        <p class="eyebrow">01 / MOMENTOS</p>
+        <h2 id="momentsTitle">Unas cuantas cosas<br><em>que quería guardar aquí.</em></h2>
+        <p>No son fotos perfectas ni tienen que serlo. Me gustan porque son nuestras, porque me recuerdan momentos, ocurrencias y cositas que me hacen sonreír.</p>
       </div>
 
-      <div class="garden-stage reveal">
-        <img src="assets/jardin-camino.png" alt="Un jardín de tarde dorada lleno de girasoles, flores amarillas, flores rosadas y dos gatitos descansando juntos." width="1672" height="941" loading="lazy">
-        <div class="garden-stage-shade"></div>
-        <div class="garden-message-card" aria-live="polite">
-          <span class="message-flower" aria-hidden="true">✿</span>
-          <p class="eyebrow">TOCA UNA FLOR</p>
-          <p id="flower-message">Me encanta verte sonreír, y más todavía cuando sé que tuve aunque sea un poquito que ver con esa sonrisa.</p>
+      <div class="memory-wall" aria-label="Galería de momentos">
+        <figure class="memory-card reveal tilt-a"><img src="assets/moments/01-gatito.jpeg" alt="Gatito naranja y blanco." loading="lazy"><figcaption>Obviamente este tenía que estar aquí jajajja ♡</figcaption></figure>
+        <figure class="memory-card featured reveal tilt-b"><img src="assets/moments/02-nosotros.jpeg" alt="Una foto de nosotros juntos." loading="lazy"><figcaption>Una de mis favoritas.</figcaption></figure>
+        <figure class="memory-card reveal tilt-c"><img src="assets/moments/03-flores-rosadas.jpeg" alt="Momento con un ramo de flores rosadas." loading="lazy"><figcaption>Flores, pero esta vez con otro color.</figcaption></figure>
+        <figure class="memory-card reveal tilt-d"><img src="assets/moments/04-gatitos.jpeg" alt="Los dos gatitos juntos." loading="lazy"><figcaption>Mira esos dos jajajja.</figcaption></figure>
+        <figure class="memory-card reveal tilt-e"><img src="assets/moments/05-gatitos-jugando.jpeg" alt="Los dos gatitos jugando juntos." loading="lazy"><figcaption>Caos chiquito y bonito.</figcaption></figure>
+        <figure class="memory-card wide reveal tilt-f"><img src="assets/moments/06-gatitos-durmiendo.jpeg" alt="Los dos gatitos descansando juntos." loading="lazy"><figcaption>De esas cositas que uno quiere guardar.</figcaption></figure>
+      </div>
+    </section>
+
+    <section class="portal-band" aria-label="Transición al jardín de mensajes">
+      <img src="assets/portal-recuerdos.webp" alt="Portal brillante rodeado de girasoles, flores rosadas y fotografías flotantes." loading="lazy">
+      <div class="portal-copy reveal">
+        <p>Y después de los recuerdos...</p>
+        <h2>más flores.<br><em>Porque nunca son demasiadas.</em></h2>
+      </div>
+    </section>
+
+    <section id="flores" class="flower-messages section-space" aria-labelledby="flowersTitle">
+      <div class="section-heading reveal">
+        <p class="eyebrow">02 / SEIS FLORES PARA TI</p>
+        <h2 id="flowersTitle">Toca una.<br><em>Cada una guarda algo.</em></h2>
+      </div>
+
+      <div class="flower-console reveal">
+        <div class="flower-buttons" role="group" aria-label="Mensajes entre flores">
+          <button class="flower-choice active" type="button" aria-pressed="true" data-message="Me encanta verte sonreír, y más todavía cuando sé que tuve aunque sea un poquito que ver con esa sonrisa."><span>🌻</span>Tu sonrisa</button>
+          <button class="flower-choice" type="button" aria-pressed="false" data-message="Me encantan tus ocurrencias jajajja. A veces estamos hablando de cualquier tontería y terminas alegrándome el día sin darte cuenta."><span>🌼</span>Tus ocurrencias</button>
+          <button class="flower-choice" type="button" aria-pressed="false" data-message="Me gusta muchísimo la persona que eres mi amor. Tu forma de pensar, cómo hablas y todas esas pequeñas cositas tuyas que poco a poco voy conociendo."><span>🌻</span>Tu forma de ser</button>
+          <button class="flower-choice" type="button" aria-pressed="false" data-message="Y sí, tengo que decírtelo otra vez porque parece que nunca es suficiente jajajja. Eres demasiado hermosa. Tu carita, tu sonrisa, tus ojos... todo."><span>🌼</span>Lo hermosa que eres</button>
+          <button class="flower-choice" type="button" aria-pressed="false" data-message="Gracias por todas esas formas en las que me haces sentir querido. A veces son cosas pequeñas, pero yo sí las noto y significan muchísimo para mí."><span>🌻</span>Tu cariño</button>
+          <button class="flower-choice" type="button" aria-pressed="false" data-message="Gracias por estar en mi vida, por escucharme, por hacerme reír y por todas esas cositas que hacen que compartir contigo se sienta tan bonito."><span>🌼</span>Gracias por tanto</button>
         </div>
-      </div>
-
-      <div class="flower-grid reveal" role="group" aria-label="Mensajes entre flores">
-        <button class="flower-choice selected" type="button" aria-pressed="true" data-message="Me encanta verte sonreír, y más todavía cuando sé que tuve aunque sea un poquito que ver con esa sonrisa."><span class="flower-disc" aria-hidden="true">✿</span><span>Tu sonrisa</span></button>
-        <button class="flower-choice" type="button" aria-pressed="false" data-message="Me encantan tus ocurrencias jajajja. A veces estamos hablando de cualquier tontería y terminas alegrándome el día sin darte cuenta."><span class="flower-disc" aria-hidden="true">✿</span><span>Tus ocurrencias</span></button>
-        <button class="flower-choice" type="button" aria-pressed="false" data-message="Me gusta muchísimo la persona que eres mi amor. Tu forma de pensar, cómo hablas, cómo reaccionas cuando algo te emociona y todas esas pequeñas cositas tuyas que poco a poco voy conociendo."><span class="flower-disc" aria-hidden="true">✿</span><span>Tu forma de ser</span></button>
-        <button class="flower-choice" type="button" aria-pressed="false" data-message="Y sí, tengo que decírtelo otra vez porque parece que nunca es suficiente jajajja. Eres demasiado hermosa. Tu carita, tu sonrisa, tus ojos... todo."><span class="flower-disc" aria-hidden="true">✿</span><span>Lo hermosa que eres</span></button>
-        <button class="flower-choice" type="button" aria-pressed="false" data-message="Gracias por todas esas formas en las que me haces sentir querido. A veces son cosas pequeñas, pero yo sí las noto y significan muchísimo para mí."><span class="flower-disc" aria-hidden="true">✿</span><span>Tu cariño</span></button>
-        <button class="flower-choice" type="button" aria-pressed="false" data-message="Gracias por estar en mi vida, por escucharme, por hacerme reír y por todas esas cositas que hacen que compartir contigo se sienta tan bonito."><span class="flower-disc" aria-hidden="true">✿</span><span>Gracias por tanto</span></button>
+        <div class="flower-message-card" aria-live="polite"><span>✦</span><p id="flowerMessage">Me encanta verte sonreír, y más todavía cuando sé que tuve aunque sea un poquito que ver con esa sonrisa.</p></div>
       </div>
     </section>
 
-    <section class="thanks-section section-space" aria-labelledby="thanks-title">
-      <div class="thanks-art reveal">
-        <img src="assets/jardin-camino.png" alt="Una banca rodeada de flores amarillas al atardecer, con dos gatitos descansando cerca." width="1672" height="941" loading="lazy">
-      </div>
-      <div class="thanks-copy reveal">
-        <p class="eyebrow">ENTRE TANTAS FLORES...</p>
-        <h2 id="thanks-title">Hay muchas cositas<br>por las que quería<br><em>darte las gracias.</em></h2>
-        <p>Gracias por escucharme, por las veces que me haces reír, por tus ocurrencias, por tu cariño y por todas esas pequeñas cosas que quizás haces sin darte cuenta.</p>
-        <p>Me gusta mucho poder compartir contigo hasta las cosas más simples. No tiene que estar pasando nada extraordinario para que disfrute hablar contigo o estar contigo.</p>
-        <p>Y gracias también por dejarme conocerte cada vez un poquito más. De verdad me encanta descubrir esas pequeñas cosas tuyas que te hacen ser tú.</p>
-        <p class="handwritten thanks-note">Sí, probablemente podría seguir escribiendo agradecimientos por aquí jajajja ♡</p>
-      </div>
-    </section>
-
-    <section id="ramo" class="bouquet section-space" aria-labelledby="bouquet-title">
-      <div class="bouquet-watercolor" aria-hidden="true"></div>
-      <div class="bouquet-art reveal">
-        <img src="assets/ramo.png?v=20260920-2" alt="Ramo de girasoles con pequeñas flores rosadas, envuelto en papel crema y lazo rosa." width="1122" height="1402" loading="lazy">
-        <span class="bouquet-tag handwritten">este sí tiene dueña ♡</span>
-      </div>
+    <section id="ramo" class="bouquet section-space" aria-labelledby="bouquetTitle">
+      <div class="bouquet-art reveal"><div class="watercolor"></div><img src="assets/ramo.png?v=3d-20260920" alt="Ramo de girasoles con pequeñas flores rosadas, papel crema y lazo rosado." loading="lazy"><p class="handwritten bouquet-tag">este sí tiene dueña ♡</p></div>
       <div class="bouquet-copy reveal">
-        <p class="eyebrow">02 / ESTE SÍ TIENE DUEÑA</p>
-        <h2 id="bouquet-title">No pude dártelo hoy...<br><em>pero tenía una razón.</em></h2>
-        <blockquote>Sé que hoy no pude darte tus flores en persona y créeme que sí quería hacerlo. Pero después pensé que prefería guardarme ese momento un poquito más y poder dártelas yo mismo.</blockquote>
-        <p>No quería que fuera simplemente mandarte unas flores y ya. Quiero tenerlas conmigo, llegar donde ti, mirarte esa carita cuando las veas y entregártelas con mis propias manos.</p>
-        <p>Así que estas flores virtuales son solamente un adelanto, porque las de verdad ya tienen dueña.</p>
-        <p class="handwritten bouquet-note">Sí. Tú. Obviamente jajajja ♡</p>
-        <p>Elegí los girasoles porque una vez me comentaste que algún día te gustaría que te regalaran unos, y obviamente me quedé con eso en la cabeza jajajja. Las florecitas rosadas las elegí para darle ese toque bonito y delicado, y también para cumplirte ese pequeño capricho. Quiero que cuando lo veas sientas que no escogí un ramo cualquiera, sino uno pensando en esas cositas que sé que te gustan.</p>
-        <a class="text-link" href="#encuentro">Ver cuánto falta <span aria-hidden="true">→</span></a>
+        <p class="eyebrow">03 / ESTE SÍ TIENE DUEÑA</p>
+        <h2 id="bouquetTitle">No pude dártelo hoy...<br><em>pero tenía una razón.</em></h2>
+        <blockquote>Sé que hoy no pude darte tus flores en persona y créeme que sí quería hacerlo. Pero preferí guardarme ese momento para poder dártelas yo mismo.</blockquote>
+        <p>No quería que fuera simplemente mandarte unas flores y ya. Quiero llegar con ellas, ver esa carita tuya cuando las veas y entregártelas con mis propias manos.</p>
+        <p>Elegí girasoles porque una vez me comentaste que algún día te gustaría que te regalaran unos, y obviamente me quedé con eso en la cabeza jajajja. Las florecitas rosadas son para darle ese toque bonito y delicado que quería.</p>
+        <p class="handwritten">Sí. Tú. Obviamente jajajja ♡</p>
       </div>
     </section>
 
-    <section id="encuentro" class="countdown-section section-space" aria-labelledby="countdown-title">
-      <div class="countdown-deco deco-one" aria-hidden="true">✿</div>
-      <div class="countdown-deco deco-two" aria-hidden="true">❀</div>
+    <section id="encuentro" class="countdown-section section-space" aria-labelledby="countdownTitle">
       <div class="countdown-wrap reveal">
         <p class="handwritten countdown-hand">tu ramito real viene en camino ♡</p>
-        <p class="eyebrow">03 / DEL JARDÍN A TUS MANOS</p>
-        <h2 id="countdown-title">Estas sí quiero<br><em>ponerlas en tus manos.</em></h2>
-        <p id="countdown-subtitle">Así que por ahora este jardincito guarda el secreto mientras llega el momento de aparecer con tu ramito de verdad.</p>
+        <p class="eyebrow">04 / DEL JARDÍN A TUS MANOS</p>
+        <h2 id="countdownTitle">Estas sí quiero<br><em>ponerlas en tus manos.</em></h2>
+        <p>Mientras tanto, este jardincito guarda el secreto.</p>
         <p class="countdown-label">FALTAN</p>
-
         <div class="countdown" role="group" aria-label="Cuenta regresiva al 28 de septiembre">
           <div><span id="days">--</span><small>DÍAS</small></div>
           <div><span id="hours">--</span><small>HORAS</small></div>
           <div><span id="minutes">--</span><small>MINUTOS</small></div>
           <div><span id="seconds">--</span><small>SEGUNDOS</small></div>
         </div>
-
-        <p class="countdown-bottom">para darte tus flores en persona ♡</p>
-        <p class="date-label"><img src="assets/flor.svg" alt="" width="22" height="22"> <time id="gift-date" datetime="2026-09-28">28 de septiembre</time></p>
-        <p id="arrival-message" class="arrival-message" role="status" hidden>Se acabó la cuenta regresiva. Ahora solamente falta verte y darte ese ramito que llevaba días queriendo poner en tus manos.</p>
-        <noscript><p>El ramito es para el 28 de septiembre. Activa JavaScript para ver la cuenta regresiva.</p></noscript>
+        <p class="date-label"><img src="assets/flor.svg" alt="" width="22" height="22"><time id="giftDate" datetime="2026-09-28">28 de septiembre</time></p>
+        <p id="arrivalMessage" class="arrival-message" hidden>Ahora sí mi amor. Se acabó la cuenta regresiva: hoy toca darte tus flores en persona ♡</p>
       </div>
     </section>
 
-    <section id="carta" class="letter-section section-space" aria-labelledby="letter-title">
+    <section id="carta" class="letter-section section-space" aria-labelledby="letterTitle">
       <div class="section-heading reveal">
-        <p class="eyebrow">04 / ESCONDIDA ENTRE LAS FLORES</p>
-        <h2 id="letter-title">Entre tantas flores,<br>también quería<br><em>dejarte esto.</em></h2>
+        <p class="eyebrow">05 / ESCONDIDA ENTRE LAS FLORES</p>
+        <h2 id="letterTitle">Entre tantas flores,<br>también quería<br><em>dejarte esto.</em></h2>
         <p>Porque el ramo lleva flores, pero esto lleva todas esas cositas que quería decirte.</p>
       </div>
 
       <details class="letter reveal">
-        <summary>
-          <span class="letter-flower" aria-hidden="true">✿</span>
-          <span class="envelope-copy">Para mi amorcito ♡<small>Una cartita que venía escondida entre las flores</small></span>
-          <span class="letter-action"><span class="when-closed">Abrir la carta</span><span class="when-open">Cerrar</span> <b aria-hidden="true">↗</b></span>
-        </summary>
-
+        <summary><span class="seal">✿</span><span>Para mi amorcito ♡<small>Una cartita escondida entre las flores</small></span><b><span class="when-closed">Abrir la carta</span><span class="when-open">Cerrar</span> ↗</b></summary>
         <article class="letter-body">
-          <span class="letter-corner flower-a" aria-hidden="true">✿</span>
-          <span class="letter-corner flower-b" aria-hidden="true">❀</span>
           <p class="handwritten salutation">Mi amorcito,</p>
-
           <p>Primero que nada, gracias. Gracias por estar en mi vida, por quererme, por escucharme y por todas esas cositas que haces que quizás para ti son normales, pero yo sí las noto.</p>
-
           <p>De verdad valoro muchísimo tenerte y poder compartir tantas cosas contigo. Hasta las conversaciones más simples terminan alegrándome el día, y me encanta que muchas veces podemos estar hablando de cualquier tontería y aun así yo termino con una sonrisa.</p>
-
           <p>Hay demasiadas cosas de ti que me gustan. Me encanta tu sonrisa, tus ocurrencias, cómo reaccionas cuando algo te emociona, la forma en que hablas cuando tienes algo en la cabeza y hasta esas pequeñas mañas tuyas que poco a poco voy conociendo jajajja.</p>
-
           <p>Y sí, también tengo que decirte que eres demasiado hermosa. Probablemente te lo diga muchas veces, pero bueno, tendrás que acostumbrarte jajajja. Me encanta verte, me encanta tu carita, tu sonrisa y esa forma tan bonita que tienes de ser tú.</p>
-
           <p>También me gusta mucho cómo me haces sentir. Gracias por tu cariño, por las veces que me preguntas cómo estoy, por escucharme hablar de cualquier cosa, por preocuparte por mí y por todos esos detalles pequeños que quizás tú ni cuentas como algo importante, pero para mí sí lo son.</p>
-
           <p>Me hace feliz poder tener detalles contigo. No porque tenga que hacerlo ni porque una fecha lo diga, sino porque me nace. Me gusta hacer cosas que te saquen una sonrisa, pensar en algo que te pueda gustar y luego imaginarme tu reacción.</p>
-
           <p>Y obviamente hoy tenía que pensar en flores amarillas jajajja.</p>
-
           <p>Sé que hoy, 21 de septiembre, no pude darte tus flores en persona, y sí, yo quería hacerlo. Pero después pensé que prefería guardarme ese momento un poquito más y poder dártelas yo mismo.</p>
-
-          <p>No quería que fuera simplemente mandarte unas flores y ya.</p>
-
-          <p>Quiero ser yo quien llegue con ellas.</p>
-          <p>Quiero verte cuando las recibas.</p>
-          <p>Quiero ver esa carita tuya cuando te diga que son para ti.</p>
-
+          <p>No quería que fuera simplemente mandarte unas flores y ya. Quiero ser yo quien llegue con ellas. Quiero verte cuando las recibas. Quiero ver esa carita tuya cuando te diga que son para ti.</p>
           <p>Y sí, probablemente voy a estar mirando más tu reacción que el propio ramo jajajja.</p>
-
-          <p>Por eso hice este pequeño jardín.</p>
-
-          <p>Porque aunque hoy no pudiera ponerte las flores en las manos, no quería simplemente dejar pasar el día como si nada. Quería que supieras que pensé en ti y que obviamente tus flores ya estaban en mi cabeza.</p>
-
-          <p>Este jardín es como un pequeño adelanto.</p>
-
-          <p>Para las de verdad elegí girasoles porque me comentaste que algún día te gustaría que te regalaran unos, y sí, me acordé de eso jajajja. También quise ponerle esas florecitas rosadas para que se vea más delicado y para cumplirte ese pequeño capricho. Quiero que el ramo se vea especial porque lo escogí pensando en ti y en esas cositas que me has ido contando.</p>
-
-          <p>Y no sé, siento que entregártelas en persona va a hacer que el momento sea mucho más bonito.</p>
-
+          <p>Por eso hice este pequeño jardín y este viaje. Porque aunque hoy no pudiera ponerte las flores en las manos, no quería dejar pasar el día como si nada. Quería que supieras que pensé en ti y que obviamente tus flores ya estaban en mi cabeza.</p>
+          <p>Para las de verdad elegí girasoles porque me comentaste que algún día te gustaría que te regalaran unos, y sí, me acordé de eso jajajja. También quise ponerle esas florecitas rosadas para que se vea más delicado y para cumplirte ese pequeño capricho.</p>
           <p>Así que sí mi amor, las flores del 21 técnicamente llegan el 28 jajajja, pero prometo que tienen una buena razón.</p>
-
-          <p>Mientras tanto te dejo este jardincito para ti.</p>
-
-          <div class="letter-thanks">
-            <p>Gracias por quererme.</p>
-            <p>Gracias por hacerme reír.</p>
-            <p>Gracias por escucharme.</p>
-            <p>Gracias por tus ocurrencias.</p>
-            <p>Gracias por todas esas pequeñas cosas tuyas que hacen que me gustes cada vez más.</p>
-          </div>
-
-          <p>Y gracias simplemente por ser tú.</p>
-
+          <div class="letter-thanks"><p>Gracias por quererme.</p><p>Gracias por hacerme reír.</p><p>Gracias por escucharme.</p><p>Gracias por tus ocurrencias.</p><p>Y gracias simplemente por ser tú.</p></div>
           <p>Te amo muchísimo mi amor.</p>
-
-          <p>Y wow... otra vez terminé escribiendo demasiado jajajja.</p>
-
-          <p>Espero que no te hayas aburrido leyendo todo esto, pero bueno, tenía muchas cosas que quería decirte.</p>
-
+          <p>Y wow... otra vez terminé escribiendo demasiado jajajja. Espero que no te hayas aburrido leyendo todo esto, pero bueno, tenía muchas cosas que quería decirte.</p>
           <p class="signature">Con mucho amor,<br><span class="handwritten">Tu Amorcito ♡</span></p>
         </article>
       </details>
     </section>
 
-    <section class="closing" aria-labelledby="closing-title">
-      <img class="closing-image" src="assets/jardin-final.png" alt="Un jardín lleno de flores amarillas al atardecer, con dos gatitos sentados juntos mirando el paisaje." width="1672" height="941" loading="lazy">
-      <div class="closing-shade"></div>
-      <div class="closing-copy reveal">
-        <p class="eyebrow">UN ÚLTIMO DETALLITO</p>
-        <h2 id="closing-title">Por ahora quédate<br>con este pequeño jardín.</h2>
-        <p class="closing-em">Las flores de verdad<br>te las debo en persona.</p>
-        <p>Gracias por existir en mi vida de esa manera tan bonita mi amor.</p>
-        <p class="handwritten">Nos vemos el 28 con tus flores ♡</p>
-        <a class="button light" href="#inicio">Volver a recorrer tu jardín <span aria-hidden="true">↑</span></a>
-      </div>
+    <section class="closing" aria-labelledby="closingTitle">
+      <img src="assets/jardin-final.webp" alt="Jardín de flores amarillas al atardecer." loading="lazy">
+      <div class="closing-overlay"></div>
+      <div class="closing-copy reveal"><p class="eyebrow">UN ÚLTIMO DETALLITO</p><h2 id="closingTitle">Por ahora quédate<br>con este pequeño jardín.</h2><p class="closing-em">Las flores de verdad te las debo en persona.</p><p>Gracias por existir en mi vida de esa manera tan bonita mi amor.</p><p class="handwritten">Nos vemos el 28 con tus flores ♡</p><a class="button light" href="#jardin">Volver al jardín ↑</a></div>
       <small>21 DE SEPTIEMBRE · HECHO POR TU AMORCITO PARA TI</small>
     </section>
   </main>
+
+  <script src="countdown.js"></script>
+  <script type="module" src="experience.js"></script>
+  <script src="app.js"></script>
 </body>
 </html>

@@ -5,55 +5,31 @@ import path from 'node:path';
 
 const root = fileURLToPath(new URL('.', import.meta.url));
 const port = Number(process.env.PORT || 4174);
-
 const mime = {
-  '.html': 'text/html; charset=utf-8',
-  '.css': 'text/css; charset=utf-8',
-  '.js': 'text/javascript; charset=utf-8',
-  '.svg': 'image/svg+xml',
-  '.png': 'image/png',
-  '.webp': 'image/webp'
+  '.html':'text/html; charset=utf-8', '.css':'text/css; charset=utf-8', '.js':'text/javascript; charset=utf-8',
+  '.svg':'image/svg+xml', '.png':'image/png', '.webp':'image/webp', '.jpg':'image/jpeg', '.jpeg':'image/jpeg',
+  '.mp3':'audio/mpeg', '.json':'application/json; charset=utf-8', '.txt':'text/plain; charset=utf-8'
 };
 
-http.createServer(async (req, res) => {
+http.createServer(async (req,res) => {
   try {
-    if (!['GET', 'HEAD'].includes(req.method)) {
-      res.writeHead(405, { Allow: 'GET, HEAD' });
-      res.end();
-      return;
-    }
-
-    const pathname = decodeURIComponent(new URL(req.url, 'http://localhost').pathname);
-    const file = path.resolve(root, '.' + (pathname === '/' ? '/index.html' : pathname));
-    const relative = path.relative(root, file);
-
-    const publicFile =
-      ['index.html', 'styles.css', 'app.js', 'countdown.js'].includes(relative) ||
-      relative.startsWith('assets' + path.sep);
-
-    if (!publicFile || relative.startsWith('..') || path.isAbsolute(relative)) {
-      res.writeHead(404);
-      res.end('No encontrado');
-      return;
-    }
-
-    const contents = await readFile(file);
-    const ext = path.extname(file);
-    const isAsset = relative.startsWith('assets' + path.sep);
-
-    res.writeHead(200, {
-      'Content-Type': mime[ext] || 'application/octet-stream',
-      'X-Content-Type-Options': 'nosniff',
-      'Referrer-Policy': 'no-referrer',
-      'Cache-Control': isAsset ? 'public, max-age=86400' : 'no-cache',
-      'Content-Security-Policy': "default-src 'self'; img-src 'self' data:; style-src 'self'; script-src 'self'; font-src 'self'; object-src 'none'; base-uri 'none'; frame-ancestors 'none'"
+    if (!['GET','HEAD'].includes(req.method)) { res.writeHead(405,{Allow:'GET, HEAD'}); res.end(); return; }
+    const pathname = decodeURIComponent(new URL(req.url,'http://localhost').pathname);
+    const requested = pathname === '/' ? '/index.html' : pathname;
+    const file = path.resolve(root, '.' + requested);
+    const rel = path.relative(root,file);
+    if (rel.startsWith('..') || path.isAbsolute(rel)) { res.writeHead(404); res.end('No encontrado'); return; }
+    const data = await readFile(file);
+    res.writeHead(200,{
+      'Content-Type': mime[path.extname(file).toLowerCase()] || 'application/octet-stream',
+      'X-Content-Type-Options':'nosniff',
+      'Referrer-Policy':'no-referrer',
+      'Cache-Control':'no-cache, no-store, must-revalidate',
+      'Content-Security-Policy': "default-src 'self'; img-src 'self' data: blob:; media-src 'self'; style-src 'self'; script-src 'self' https://cdn.jsdelivr.net; connect-src 'self' https://cdn.jsdelivr.net; font-src 'self'; object-src 'none'; base-uri 'self'; frame-ancestors 'none'"
     });
-
-    res.end(req.method === 'HEAD' ? undefined : contents);
+    res.end(req.method === 'HEAD' ? undefined : data);
   } catch {
-    res.writeHead(404);
+    res.writeHead(404,{'Content-Type':'text/plain; charset=utf-8','Cache-Control':'no-store'});
     res.end('No encontrado');
   }
-}).listen(port, '0.0.0.0', () => {
-  console.log(`Tu jardín está en http://localhost:${port}`);
-});
+}).listen(port,'0.0.0.0',()=>console.log(`Flores amarillas 3D: http://localhost:${port}`));
