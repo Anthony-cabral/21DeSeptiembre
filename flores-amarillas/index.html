@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f8f5eb">
+  <meta name="robots" content="noindex,nofollow">
+  <meta name="description" content="Un pequeño jardín de flores amarillas, hecho para ti con mucho cariño.">
+  <title>Un jardín para ti · Flores amarillas</title>
+  <link rel="icon" href="assets/flor.svg" type="image/svg+xml">
+  <link rel="preload" as="image" href="assets/jardin.png">
+  <link rel="stylesheet" href="styles.css">
+  <script defer src="countdown.js"></script>
+  <script defer src="app.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#contenido">Saltar al contenido</a>
+  <header class="site-header">
+    <a class="brand" href="#inicio"><img src="assets/flor.svg" width="37" height="37" alt=""><span>un jardín para ti<small>HECHO CON MUCHO CARIÑO</small></span></a>
+    <nav aria-label="Recorrido"><a href="#jardin">El jardín</a><a href="#ramo">Tu ramito</a><a href="#carta">Una cartita <span aria-hidden="true">♡</span></a></nav>
+    <button class="motion-toggle" aria-pressed="false" aria-label="Pausar animaciones" title="Pausar animaciones"><span aria-hidden="true">✧</span><span class="motion-label">Pausar magia</span></button>
+  </header>
+  <main id="contenido">
+    <section id="inicio" class="hero" aria-labelledby="hero-title">
+      <div class="hero-copy">
+        <p class="eyebrow"><span class="little-line"></span> 21 DE SEPTIEMBRE · FLORES AMARILLAS</p>
+        <h1 id="hero-title">Unas flores.<br>Un poquito de magia.<br><em>Mucho cariño<br> para ti.</em></h1>
+        <p class="intro">Hoy quería regalarte un pedacito de flores y de todo lo bonito que me haces sentir.</p>
+        <p class="small-copy">Así que hice este pequeño jardín, especialmente para ti.</p>
+        <a class="button" href="#jardin">Empezar este detalle para ti <span aria-hidden="true">↗</span></a>
+        <p class="handwritten hero-note">Porque tú mereces cosas bonitas. <span aria-hidden="true">♡</span></p>
+      </div>
+      <div class="hero-art">
+        <img src="assets/jardin.png" alt="Un jardín ilustrado al atardecer, con girasoles, lirios amarillos, flores rosadas, faroles y un gatito dormido." width="1536" height="1024" fetchpriority="high">
+        <div class="particles" aria-hidden="true"></div>
+        <div class="art-caption"><span aria-hidden="true">✧</span> Hay detalles que nacen de pensarte.</div>
+        <span class="art-corner" aria-hidden="true">con amor,<br><i>para ti</i></span>
+      </div>
+    </section>
+    <div class="chapter-strip" aria-label="Capítulos del detalle">
+      <span class="strip-note">Un pequeño paseo, muchas cosas bonitas.</span>
+      <a href="#jardin"><span>01</span> Un jardín</a><a href="#ramo"><span>02</span> Tu ramito</a><a href="#encuentro"><span>03</span> En persona</a><a href="#carta"><span>04</span> Una cartita</a>
+    </div>
+
+    <section id="jardin" class="garden section-space" aria-labelledby="garden-title">
+      <div class="section-heading reveal"><p class="eyebrow">01 / UN JARDÍN QUE ME RECUERDA A TI</p><h2 id="garden-title">Tú haces más bonito<br><em>lo que tienes cerquita.</em></h2><p>Hay algo en tu manera de ser que me da mucha ternura.<br>Me nace cuidarte, consentirte y encontrar una razón para hacerte sonreír.</p></div>
+      <div class="garden-window reveal">
+        <img src="assets/jardin.png" alt="Un sendero entre flores amarillas conduce a una pequeña puerta de jardín iluminada por el sol." width="1536" height="1024" loading="lazy">
+        <div class="garden-whisper"><span class="eyebrow">UNA FLOR, UNA COSITA QUE QUIERO DECIRTE</span><p id="flower-message" aria-live="polite">Me encanta esa forma tan tuya de hacerme sonreír.</p>
+          <div class="flower-choices" role="group" aria-label="Descubre un mensaje en cada flor">
+            <button class="flower-choice selected" aria-pressed="true" data-message="Me encanta esa forma tan tuya de hacerme sonreír."><span aria-hidden="true">✿</span> Tu sonrisa</button>
+            <button class="flower-choice" aria-pressed="false" data-message="Admiro tu corazón, lo mucho que te esfuerzas y la ternura con la que tratas a los demás."><span aria-hidden="true">✿</span> Tu forma de ser</button>
+            <button class="flower-choice" aria-pressed="false" data-message="Eres muy bonita, por dentro y por fuera. Y me hace feliz poder recordártelo."><span aria-hidden="true">✿</span> Lo bonita que eres</button>
+          </div>
+        </div>
+      </div>
+      <p class="under-note">Toca una flor. Hay un poquito de cariño en cada una.</p>
+    </section>
+
+    <section id="ramo" class="bouquet section-space" aria-labelledby="bouquet-title">
+      <div class="bouquet-art reveal"><img src="assets/ramo.png" alt="Un ramo de girasoles y lirios amarillos con pequeñas flores rosadas, envuelto en papel decorado y atado con un lazo rosa." width="1024" height="1536" loading="lazy"><span class="bouquet-tag handwritten">Elegidas pensando en ti ♡</span></div>
+      <div class="bouquet-copy reveal"><p class="eyebrow">02 / ESTAS FLORES TIENEN DUEÑA</p><h2 id="bouquet-title">Tu ramito tiene<br><em>algo que contarte.</em></h2><div class="quote-mark" aria-hidden="true">“</div><blockquote>Sé que el 21 no pude darte tus flores, pero quería hacerlo de una forma más bonita: en persona, para ver tu sonrisa al recibirlas.</blockquote><p>El 28 de septiembre te las daré yo. Con un abrazo y con todo el cariño con el que elegí cada una.</p><p>Este jardín es mi manera de decirte que pensé en ti, y que me hace mucha ilusión tener este detalle contigo.</p><a class="text-link" href="#encuentro">Tenemos una cita con tus flores <span aria-hidden="true">↗</span></a></div>
+    </section>
+
+    <section id="encuentro" class="countdown-section section-space" aria-labelledby="countdown-title">
+      <div class="reveal"><span class="ornament" aria-hidden="true">❧</span><p class="eyebrow">03 / DEL JARDÍN A TUS MANOS</p><h2 id="countdown-title">Falta poquito para<br><em>entregártelas en persona.</em></h2><p id="countdown-subtitle">Un ramito amarillo. Un abrazo. Y tú.</p>
+      <div class="countdown" role="group" aria-label="Cuenta regresiva al 28 de septiembre">
+        <div><span id="days">--</span><small>DÍAS</small></div><b aria-hidden="true">:</b><div><span id="hours">--</span><small>HORAS</small></div><b aria-hidden="true">:</b><div><span id="minutes">--</span><small>MINUTOS</small></div><b aria-hidden="true">:</b><div><span id="seconds">--</span><small>SEGUNDOS</small></div>
+      </div><p class="date-label"><span aria-hidden="true">✿</span> <time id="gift-date" datetime="2026-09-28">28 de septiembre</time></p><p id="arrival-message" role="status" hidden>¡Hoy es el día de darte tus flores! Qué ilusión verte sonreír.</p><noscript><p>El ramito es para el 28 de septiembre. Activa JavaScript para ver la cuenta regresiva.</p></noscript></div>
+    </section>
+
+    <section id="carta" class="letter-section section-space" aria-labelledby="letter-title">
+      <div class="section-heading reveal"><p class="eyebrow">04 / DE MI CORAZÓN, PARA TI</p><h2 id="letter-title">También te escribí<br><em>unas cositas.</em></h2><p>De esas que a veces se sienten más de lo que se dicen.</p></div>
+      <details class="letter reveal"><summary><span class="envelope-icon" aria-hidden="true">♡</span><span>Para mi persona bonita<small>Una cartita con mucho cariño</small></span><span class="letter-action"><span class="when-closed">Abrir</span><span class="when-open">Cerrar</span> ↗</span></summary>
+        <div class="letter-body"><p class="handwritten salutation">Mi amorcito,</p><p>Gracias por estar en mi vida y por todo el cariño que me das. Me haces feliz con cosas que quizá ni notas: tu sonrisa, tus ocurrencias, la forma en que me escuchas y esa ternura tan tuya.</p><p>Admiro muchas cosas de ti. Tu corazón, las ganas que le pones a lo que te importa y esa manera tan bonita de ser tú. Me gusta verte feliz, escucharte hablar de lo que te ilusiona y poder apoyarte en lo que necesitas.</p><p>Estás muy bonita, amor. Y no hablo solo de tu sonrisa: también de lo lindo que se siente estar contigo. Me nace tener detalles contigo porque eres muy especial para mí, y porque consentirte también me hace feliz.</p><p>El 21 no pude darte tus flores, pero sí pensé en ti con muchísimo cariño. Por eso hice este pequeño jardín: quería regalarte algo que te sacara una sonrisa y te recordara lo mucho que me importas.</p><p>El 28 de septiembre quiero entregarte tu ramito en persona. Quiero elegir tus flores, llevarlas con cuidado y dártelas con un abrazo. Me hace mucha ilusión imaginar tu carita al verlas.</p><p>Gracias por ser tú y por hacerme sentir tantas cosas bonitas. Este detalle lleva un poquito de todo ese cariño.</p><p class="signature">Con cariño,<br><span class="handwritten">Tu Amorcito</span><span aria-hidden="true"> ♡</span></p></div>
+      </details>
+    </section>
+    <footer class="closing"><img src="assets/flor.svg" width="49" height="49" alt=""><p>Las flores son para ti.<br><em>Y todo este cariño también.</em></p><span>Un pequeño jardín hecho con amor, solo para hacerte sonreír.</span><a href="#inicio">Volver al principio <span aria-hidden="true">↑</span></a><small>21 DE SEPTIEMBRE <span aria-hidden="true">·</span> DE TU AMORCITO, PARA TI</small></footer>
+  </main>
+</body>
+</html>
