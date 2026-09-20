@@ -87,6 +87,7 @@ scene.add(stars);
 
 // Radial streaks accentuate the fast part of the trip.
 const streakGroup = new THREE.Group(); scene.add(streakGroup);
+streakGroup.visible = false;
 for (let i = 0; i < (isMobile ? 45 : 80); i++) {
   const g = new THREE.BufferGeometry().setFromPoints([new THREE.Vector3(0,0,0), new THREE.Vector3(0,0,-(2 + Math.random()*6))]);
   const line = new THREE.Line(g, new THREE.LineBasicMaterial({ color: i%6===0?0xffb8ca:0xffdd72, transparent:true, opacity:.35 }));
@@ -103,6 +104,7 @@ const memoryFiles = [
 ];
 const loader = new THREE.TextureLoader();
 const memoryGroup = new THREE.Group(); scene.add(memoryGroup);
+memoryGroup.visible = false;
 function addMemory(url, caption, i) {
   loader.load(url, tex => {
     tex.colorSpace = THREE.SRGBColorSpace;
@@ -126,7 +128,9 @@ const quoteData = [
   ['Eres para mí ♡', -170, -4.2, -2.8], ['Un recuerdo bonito', -240, 4.1, 2.8],
   ['Gracias por tanto', -330, -3.5, 1.8]
 ];
-quoteData.forEach(([text,z,x,y])=>{const s=new THREE.Sprite(new THREE.SpriteMaterial({map:makeTextTexture(text),transparent:true,depthWrite:false}));s.position.set(x,y,z);s.scale.set(6.4,1.4,1);scene.add(s)});
+const quoteGroup = new THREE.Group(); scene.add(quoteGroup);
+quoteGroup.visible = false;
+quoteData.forEach(([text,z,x,y])=>{const s=new THREE.Sprite(new THREE.SpriteMaterial({map:makeTextTexture(text),transparent:true,depthWrite:false}));s.position.set(x,y,z);s.scale.set(6.4,1.4,1);quoteGroup.add(s)});
 
 let started = false, finished = false, startTime = 0;
 let currentZ = 7;
@@ -153,8 +157,46 @@ function finishJourney(){
   },560);
 }
 function startJourney(){
-  if(started)return; started=true; playMusic(); startPanel.classList.add('out'); journeyHud.hidden=false; skipButton.hidden=false; startTime=performance.now();
+  if(started)return;
+  started=true;
+  memoryGroup.visible=true;
+  quoteGroup.visible=true;
+  streakGroup.visible=true;
+  playMusic();
+  startPanel.classList.add('out');
+  journeyHud.hidden=false;
+  skipButton.hidden=false;
+  startTime=performance.now();
 }
+function resetIntro(){
+  started=false;
+  finished=false;
+  hudIndex=0;
+  currentZ=7;
+  startTime=0;
+  camera.position.set(0,0,7);
+  camera.rotation.set(0,0,0);
+  memoryGroup.visible=false;
+  quoteGroup.visible=false;
+  streakGroup.visible=false;
+  flash.classList.remove('on');
+  experience.classList.remove('hidden');
+  startPanel.classList.remove('out');
+  journeyHud.hidden=true;
+  skipButton.hidden=true;
+  main.hidden=true;
+  header.hidden=true;
+  document.body.classList.add('locked');
+  journeyTitle.textContent=hudMoments[0][1];
+  journeySub.textContent=hudMoments[0][2];
+  try { music.pause(); music.currentTime=0; } catch {}
+  requestAnimationFrame(()=>window.scrollTo(0,0));
+}
+
+if ('scrollRestoration' in history) history.scrollRestoration='manual';
+resetIntro();
+window.addEventListener('pageshow',event=>{ if(event.persisted) resetIntro(); });
+
 startButton.addEventListener('click',startJourney);
 skipButton.addEventListener('click',finishJourney);
 
